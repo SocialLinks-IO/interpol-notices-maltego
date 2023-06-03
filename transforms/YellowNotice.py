@@ -3,7 +3,7 @@ from maltego_trx.maltego import MaltegoMsg, MaltegoTransform
 from maltego_trx.transform import DiscoverableTransform
 import requests
 
-class RedNotice(DiscoverableTransform):
+class YellowNotice(DiscoverableTransform):
 
 	@classmethod
 	def create_entities(cls, request: MaltegoMsg, response: MaltegoTransform):
@@ -18,20 +18,20 @@ class RedNotice(DiscoverableTransform):
 			request_lastname = ''
 
 		
-		# Search for Target Information via Interpol Red Notice API
-		red_notice_url = 'https://ws-public.interpol.int/notices/v1/red?&name=' + request_lastname + '&forename=' + request_firstname
+		# Search for Target Information via Interpol Yellow Notice API
+		red_notice_url = 'https://ws-public.interpol.int/notices/v1/yellow?&name=' + request_lastname + '&forename=' + request_firstname
 		
 		api_response = requests.get(red_notice_url)
 		red_notices = api_response.json()
 		red_notices = (red_notices['_embedded']['notices'])
 		
-		# Iterate through all returned Red Notices
+		# Iterate through all returned Yellow Notices
 		for i in red_notices:
 		
-			# Create new Red Notice Entity
-			red_notice_entity = response.addEntity("yourorganization.InterpolRedNotice")
+			# Create new Yellow Notice Entity
+			red_notice_entity = response.addEntity("yourorganization.InterpolYellowNotice")
 		
-			# Add Properties to Red Notice Entity
+			# Add Properties to Yellow Notice Entity
 			response_firstname = i.get("forename")
 			if response_firstname:
 				red_notice_entity.addProperty("firstname", value = response_firstname)
@@ -51,5 +51,7 @@ class RedNotice(DiscoverableTransform):
 			response_photo = i['_links'].get('thumbnail')
 			if response_photo:
 				red_notice_entity.addProperty("PhotoURL", value = response_photo['href'])
+			
+
 
 

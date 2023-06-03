@@ -1,0 +1,79 @@
+# Required Imports
+from maltego_trx.maltego import MaltegoMsg, MaltegoTransform
+from maltego_trx.transform import DiscoverableTransform
+import requests
+
+class RedNoticeFaceSearch(DiscoverableTransform):
+
+	@classmethod
+	def create_entities(cls, request: MaltegoMsg, response: MaltegoTransform):
+	
+		# Obtain Target Information from Entity
+		request_firstname = request.getProperty("firstname")
+		if bool(request_firstname) == False:
+			request_firstname = ''
+			
+		request_lastname = request.getProperty("lastname")
+		if bool(request_lastname) == False:
+			request_lastname = ''
+
+		
+		# Search for Target Information via Interpol Red Notice API
+		red_notice_url = 'https://ws-public.interpol.int/notices/v1/red?&name=' + request_lastname + '&forename=' + request_firstname
+		
+		api_response = requests.get(red_notice_url)
+		red_notices = api_response.json()
+		red_notices = (red_notices['_embedded']['notices'])
+		
+		# Iterate through all returned Red Notices
+		for i in red_notices:
+		
+			# # Create new Red Notice Entity
+			# red_notice_entity = response.addEntity("yourorganization.InterpolRedNotice")
+		
+			# # Add Properties to Red Notice Entity
+			# response_firstname = i.get("forename")
+			# if response_firstname:
+			# 	red_notice_entity.addProperty("firstname", value = response_firstname)
+			
+			# response_lastname = i.get("name")
+			# if response_lastname:
+			# 	red_notice_entity.addProperty("lastname", value = response_lastname)
+			
+			# response_dob = i.get("date_of_birth")
+			# if response_dob:
+			# 	red_notice_entity.addProperty("DateOfBirth", value = response_dob)
+			
+			# response_nationality = i.get("nationalities")
+			# if response_nationality:
+			# 	red_notice_entity.addProperty("Nationality", value = response_nationality[0])
+			
+			# response_photo = i['_links'].get('thumbnail')
+			# if response_photo:
+			# 	red_notice_entity.addProperty("PhotoURL", value = response_photo['href'])
+			
+			red_notice_entity = response.addEntity("maltego.SearchFace")
+		
+			response_firstname = i.get("forename", '')
+			if response_firstname:
+				red_notice_entity.addProperty("firstname", value = response_firstname)
+			
+			response_lastname = i.get("name", '')
+			if response_lastname:
+				red_notice_entity.addProperty("lastname", value = response_lastname)
+			
+			red_notice_entity.addProperty("fullname", value = response_firstname + " " + response_lastname)
+
+			# red_notice_entity.addProperty("Full Name / Alias", response_firstname + response_lastname)
+
+			response_photo = i['_links'].get('thumbnail')
+			if response_photo:
+				photo_url = response_photo['href']
+				photo_url_id = photo_url.split('/')[-1]
+				full_photo_url_id = int(photo_url_id) -1 
+				full_photo_url = photo_url.rsplit('/', 1)[0] + '/' + str(full_photo_url_id)
+
+				red_notice_entity.addProperty("photo", value = full_photo_url)
+			
+
+

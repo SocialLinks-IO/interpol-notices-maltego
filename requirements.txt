@@ -1,1 +1,3 @@
 maltego_trx
+requests
+chardet
