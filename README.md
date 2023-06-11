@@ -2,11 +2,15 @@
 
 A list of transforms for searching Red, Yellow, and UNSC notices by Name or Phrase.
 
+[Official source](https://www.interpol.int/How-we-work/Notices/View-Red-Notices), [API description](https://interpol.api.bund.dev/).
+
 # How to use
 
 ## Import entities
 
 Import Entities and Icons from `interpol.mtz` to your Maltego (thanks sinwindie!).
+
+<img width="857" alt="Import" src="https://github.com/soxoj/interpol-notices-maltego/assets/31013580/3af3451a-d95f-4b74-8783-ceb74b351a98">
 
 Automatic congiguring of imported local transforms is a bit difficult and will be implemented later.
 
@@ -40,4 +44,6 @@ Create Phrase entity for searching by keyword OR part of name, even for mentione
 - [ ] Local transforms configuring automation
 - [ ] Test examples
 
-**Credit for source code: https://github.com/OsintDojo/public**
+## Credits
+
+**Many thanks to OSINT Dojo / Sinwindie for initial source code: https://github.com/OsintDojo/public**
