@@ -4,11 +4,13 @@ A list of transforms for searching Red, Yellow, and UNSC notices by Name or Phra
 
 # How to use
 
-## Create transforms automatically
+## Import entities
 
-Import `interpol.mtz` to your Maltego
+Import Entities and Icons from `interpol.mtz` to your Maltego (thanks sinwindie!).
 
-## Create transforms manually
+Automatic congiguring of imported local transforms is a bit difficult and will be implemented later.
+
+## Create transforms (manually)
 
 Configure each file in transforms folder like this:
 
@@ -35,7 +37,7 @@ Create Phrase entity for searching by keyword OR part of name, even for mentione
 ## TODO
 
 - [ ] Face search transforms / converters
-- [ ] .mtz configuring automation
+- [ ] Local transforms configuring automation
 - [ ] Test examples
 
 **Credit for source code: https://github.com/OsintDojo/public**
