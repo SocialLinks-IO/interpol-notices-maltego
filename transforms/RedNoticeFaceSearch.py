@@ -27,31 +27,7 @@ class RedNoticeFaceSearch(DiscoverableTransform):
 		
 		# Iterate through all returned Red Notices
 		for i in red_notices:
-		
-			# # Create new Red Notice Entity
-			# red_notice_entity = response.addEntity("yourorganization.InterpolRedNotice")
-		
-			# # Add Properties to Red Notice Entity
-			# response_firstname = i.get("forename")
-			# if response_firstname:
-			# 	red_notice_entity.addProperty("firstname", value = response_firstname)
-			
-			# response_lastname = i.get("name")
-			# if response_lastname:
-			# 	red_notice_entity.addProperty("lastname", value = response_lastname)
-			
-			# response_dob = i.get("date_of_birth")
-			# if response_dob:
-			# 	red_notice_entity.addProperty("DateOfBirth", value = response_dob)
-			
-			# response_nationality = i.get("nationalities")
-			# if response_nationality:
-			# 	red_notice_entity.addProperty("Nationality", value = response_nationality[0])
-			
-			# response_photo = i['_links'].get('thumbnail')
-			# if response_photo:
-			# 	red_notice_entity.addProperty("PhotoURL", value = response_photo['href'])
-			
+
 			red_notice_entity = response.addEntity("maltego.SearchFace")
 		
 			response_firstname = i.get("forename", '')
@@ -63,8 +39,6 @@ class RedNoticeFaceSearch(DiscoverableTransform):
 				red_notice_entity.addProperty("lastname", value = response_lastname)
 			
 			red_notice_entity.addProperty("fullname", value = response_firstname + " " + response_lastname)
-
-			# red_notice_entity.addProperty("Full Name / Alias", response_firstname + response_lastname)
 
 			response_photo = i['_links'].get('thumbnail')
 			if response_photo:
