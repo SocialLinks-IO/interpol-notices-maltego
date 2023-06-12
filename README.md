@@ -40,4 +40,4 @@ Create Phrase entity for searching by keyword OR part of name, even for mentione
 - [ ] Local transforms configuring automation
 - [ ] Test examples
 
-**Credit for source code: https://github.com/OsintDojo/public**
+**Credit for entities, icons and initial source code: https://github.com/OsintDojo/public**
