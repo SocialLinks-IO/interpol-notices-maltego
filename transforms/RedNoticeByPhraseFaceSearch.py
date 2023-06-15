@@ -45,4 +45,3 @@ class RedNoticeByPhraseFaceSearch(DiscoverableTransform):
 				full_photo_url = photo_url.rsplit('/', 1)[0] + '/' + str(full_photo_url_id)
 
 				red_notice_entity.addProperty("photo", value = full_photo_url)
-			

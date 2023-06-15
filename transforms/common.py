@@ -19,5 +19,12 @@ def create_notice_entity(notice_entity, notice_data):
 	
 	response_photo = notice_data['_links'].get('thumbnail')
 	if response_photo:
-		notice_entity.addProperty("PhotoURL", value = response_photo['href'])
+		photo_url = response_photo['href']
+		# preview
+		notice_entity.addProperty("PhotoURL", value = photo_url)
+		# full photo
+		photo_url_id = photo_url.split('/')[-1]
+		full_photo_url_id = int(photo_url_id) -1
+		full_photo_url = photo_url.rsplit('/', 1)[0] + '/' + str(full_photo_url_id)
 
+		notice_entity.addProperty("photo", value = full_photo_url)
