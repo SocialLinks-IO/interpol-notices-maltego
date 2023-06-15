@@ -2,6 +2,8 @@
 
 A list of transforms for searching Red, Yellow, and UNSC notices by Name or Phrase.
 
+![Demo](https://s11.gifyu.com/images/SQL6T.gif)
+
 [Official source](https://www.interpol.int/How-we-work/Notices/View-Red-Notices), [API description](https://interpol.api.bund.dev/).
 
 # How to use
@@ -12,7 +14,7 @@ Import Entities and Icons from `interpol.mtz` to your Maltego (thanks sinwindie!
 
 <img width="857" alt="Import" src="https://github.com/soxoj/interpol-notices-maltego/assets/31013580/3af3451a-d95f-4b74-8783-ceb74b351a98">
 
-Automatic congiguring of imported local transforms is a bit difficult and will be implemented later.
+Automatic configuring of imported local transforms is a bit difficult and will be implemented later.
 
 ## Create transforms (manually)
 
